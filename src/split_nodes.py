@@ -1,4 +1,4 @@
-from src.extract_markdown import extract_markdown_images, extract_markdown_links
+from extract_markdown import extract_markdown_images, extract_markdown_links
 from textnode import TextNode, TextType
 
 
@@ -67,3 +67,14 @@ def split_nodes_link(old_nodes: list[TextNode]) -> list[TextNode]:
         if original_text != "":
             new_nodes.append(TextNode(original_text, TextType.TEXT))
     return new_nodes
+
+
+def text_to_textnodes(text):
+    list_node = []
+    list_node = split_nodes_delimiter(
+        [TextNode(text, TextType.TEXT)], "**", TextType.BOLD
+    )
+    list_node = split_nodes_delimiter(list_node, "_", TextType.ITALIC)
+    list_node = split_nodes_delimiter(list_node, "`", TextType.CODE)
+    list_node = split_nodes_image(list_node)
+    list_node = split_nodes_link(list_node)
