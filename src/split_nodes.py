@@ -78,3 +78,4 @@ def text_to_textnodes(text):
     list_node = split_nodes_delimiter(list_node, "`", TextType.CODE)
     list_node = split_nodes_image(list_node)
     list_node = split_nodes_link(list_node)
+    return list_node
