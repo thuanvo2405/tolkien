@@ -19,3 +19,11 @@ def markdown_to_blocks(markdown):
         if block != "":
             new_list.append(block)
     return new_list
+
+
+def extract_title(markdown):
+    for line in markdown.splitlines():
+        if line.startswith("# "):
+            return line[2:].strip()
+
+    raise Exception("No h1 header found")
